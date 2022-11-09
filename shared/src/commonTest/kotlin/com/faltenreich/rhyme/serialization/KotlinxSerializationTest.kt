@@ -7,8 +7,11 @@ import kotlin.test.assertEquals
 class KotlinxSerializationTest {
 
     private val serialization = KotlinxSerialization()
-    private val data = Data(property = "value")
+    private val data = Dto(property = "value")
     private val json = "{\"property\":\"value\"}"
+
+    @Serializable
+    private data class Dto(val property: String)
 
     @Test
     fun `encodes data to json`() {
@@ -20,6 +23,3 @@ class KotlinxSerializationTest {
         assertEquals(data, serialization.decode(json))
     }
 }
-
-@Serializable
-data class Data(val property: String)
