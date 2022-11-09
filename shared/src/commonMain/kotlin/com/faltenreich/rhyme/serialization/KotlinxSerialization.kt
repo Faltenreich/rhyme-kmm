@@ -8,7 +8,11 @@ import kotlin.reflect.KClass
 @OptIn(InternalSerializationApi::class)
 class KotlinxSerialization: JsonSerialization {
 
-    @PublishedApi internal val parser = Json.Default
+    @PublishedApi internal val parser = Json {
+        ignoreUnknownKeys = true
+        encodeDefaults = true
+    }
+
 
     override fun <T : Any> encode(data: T, clazz: KClass<T>): String {
         return parser.encodeToString(clazz.serializer(), data)
