@@ -1,17 +1,16 @@
 package com.faltenreich.rhyme.serialization
 
-import kotlin.reflect.KClass
+// This proxy is a workaround since interfaces cannot have inline functions
+// which are required for kotlinx.serialization to work properly with generics
+class JsonSerialization {
 
-interface JsonSerialization {
+    @PublishedApi internal val implementation = KotlinxSerialization()
 
-    fun <T: Any> encode(data: T, clazz: KClass<T>): String
-    fun <T: Any> decode(json: String, clazz: KClass<T>): T
-}
+    inline fun <reified T: Any> encode(data: T): String {
+        return implementation.encode(data)
+    }
 
-inline fun <reified T: Any> JsonSerialization.encode(data: T): String {
-    return encode(data, T::class)
-}
-
-inline fun <reified T: Any> JsonSerialization.decode(json: String): T {
-    return decode(json, T::class)
+    inline fun <reified T: Any> decode(json: String): T {
+        return implementation.decode(json)
+    }
 }

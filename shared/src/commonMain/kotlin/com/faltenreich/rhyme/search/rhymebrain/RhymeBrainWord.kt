@@ -6,13 +6,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RhymeBrainWord(
     @SerialName("word")
-    val word: String?,
-    @SerialName("syllables")
-    val syllables: String?,
+    val word: String,
     @SerialName("freq")
-    val frequency: Int?,
+    val frequency: Int,
     @SerialName("score")
-    val score: Int?,
+    val score: Int,
     @SerialName("flags")
-    val flags: String?,
+    val flags: String,
+    @SerialName("syllables")
+    val syllables: String,
 )
