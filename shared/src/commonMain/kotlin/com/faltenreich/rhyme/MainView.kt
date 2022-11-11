@@ -2,6 +2,8 @@ package com.faltenreich.rhyme
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -17,7 +19,11 @@ fun MainView(viewModel: MainViewModel = MainViewModel()) {
         ) {
             Column {
                 Text(Greeting().greeting())
-                Text(viewModel.uiState.words.size.toString())
+                LazyColumn {
+                    items(viewModel.uiState.words) { word ->
+                        Text(word.name)
+                    }
+                }
             }
         }
     }
