@@ -16,6 +16,7 @@ class RhymeBrainApi(
 ): SearchApi {
 
     override suspend fun search(query: String?, language: Language): List<Word> {
+        // FIXME: Results seem off and ignoring language
         val url = "$HOST/talk?function=getRhymes&lang=${language.code}&word=$query"
         val json = networkingClient.request(url)
         val dtoList = serialization.decode<List<RhymeBrainWord>>(json)

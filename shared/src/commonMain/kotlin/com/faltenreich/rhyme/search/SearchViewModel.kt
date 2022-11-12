@@ -1,15 +1,22 @@
 package com.faltenreich.rhyme.search
 
+import com.faltenreich.rhyme.language.Language
+import com.faltenreich.rhyme.search.api.rhymebrain.RhymeBrainApi
 import com.faltenreich.rhyme.word.Word
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 // Workaround: Singleton fixes redundant initialization
-// Convert to non-singleton via dependency injection
+// TODO: Convert to non-singleton via dependency injection
 object SearchViewModel {
+
+    private val INPUT_SEARCH_DELAY = 1.seconds
+
+    private val repository = SearchRepository(RhymeBrainApi())
 
     private val query = MutableStateFlow("")
     private val words = MutableStateFlow(emptyList<Word>())
@@ -17,12 +24,12 @@ object SearchViewModel {
 
     init {
         GlobalScope.launch {
-            // As soon the textSearch flow changes,
-            // if the user stops typing for 1000ms, the item will be emitted
-            query.debounce(1000).collect { query ->
-                // Call the search function here using the query param
-                println("Updated query: $query")
-            }
+            query.debounce(INPUT_SEARCH_DELAY)
+                .collect { query ->
+                    val result = repository.search(query, Language.GERMAN)
+                    println("Found ${result.size} words for query: $query")
+                    words.value = result
+                }
         }
     }
 
