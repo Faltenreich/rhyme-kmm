@@ -18,6 +18,7 @@ fun MainView(viewModel: MainViewModel = MainViewModel()) {
             color = MaterialTheme.colors.background
         ) {
             Column {
+                Text(getString(MR.strings.app_name))
                 Text(Greeting().greeting())
                 LazyColumn {
                     items(viewModel.uiState.words) { word ->

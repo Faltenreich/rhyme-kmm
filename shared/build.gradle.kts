@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.compose")
     kotlin("plugin.serialization")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -25,12 +26,14 @@ kotlin {
     
     sourceSets {
         val ktorVersion = "2.1.3"
+
         val commonMain by getting {
             dependencies {
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation(compose.runtime)
+
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -82,4 +85,18 @@ android {
         minSdk = 21
         targetSdk = 33
     }
+    // Workaround for unresolved reference on Android
+    // https://github.com/icerockdev/moko-resources/issues/353
+    sourceSets["main"].apply {
+        assets.srcDir(File(buildDir, "generated/moko/androidMain/assets"))
+        res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
+    }
+}
+
+dependencies {
+    commonMainApi("dev.icerock.moko:resources:0.20.1")
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.faltenreich.rhyme"
 }
