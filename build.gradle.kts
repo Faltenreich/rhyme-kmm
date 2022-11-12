@@ -1,10 +1,10 @@
 plugins {
-    kotlin("multiplatform") version "1.7.20" apply false
-    kotlin("plugin.serialization") version "1.7.20" apply false
-    kotlin("android") version "1.7.20" apply false
-    id("com.android.application") version "7.3.1" apply false
-    id("com.android.library") version "7.3.1" apply false
-    id("org.jetbrains.compose") version "1.2.1" apply false
+    kotlin("multiplatform") version Versions.kotlin apply false
+    kotlin("plugin.serialization") version Versions.kotlin apply false
+    kotlin("android") version Versions.kotlin apply false
+    id("com.android.application") version Versions.androidGradle apply false
+    id("com.android.library") version Versions.androidGradle apply false
+    id("org.jetbrains.compose") version Versions.compose apply false
 }
 
 buildscript {
