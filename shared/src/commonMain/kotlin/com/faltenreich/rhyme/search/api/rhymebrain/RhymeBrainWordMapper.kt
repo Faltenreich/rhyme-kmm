@@ -1,6 +1,6 @@
-package com.faltenreich.rhyme.search.rhymebrain
+package com.faltenreich.rhyme.search.api.rhymebrain
 
-import com.faltenreich.rhyme.search.WordMapper
+import com.faltenreich.rhyme.search.api.WordMapper
 import com.faltenreich.rhyme.word.Word
 
 class RhymeBrainWordMapper: WordMapper<RhymeBrainWord> {

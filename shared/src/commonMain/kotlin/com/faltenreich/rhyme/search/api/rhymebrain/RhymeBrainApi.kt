@@ -1,10 +1,10 @@
-package com.faltenreich.rhyme.search.rhymebrain
+package com.faltenreich.rhyme.search.api.rhymebrain
 
 import com.faltenreich.rhyme.language.Language
 import com.faltenreich.rhyme.networking.KtorClient
 import com.faltenreich.rhyme.networking.NetworkingClient
-import com.faltenreich.rhyme.search.SearchApi
-import com.faltenreich.rhyme.search.WordMapper
+import com.faltenreich.rhyme.search.api.SearchApi
+import com.faltenreich.rhyme.search.api.WordMapper
 import com.faltenreich.rhyme.serialization.JsonSerialization
 import com.faltenreich.rhyme.word.Word
 import io.ktor.client.engine.cio.*

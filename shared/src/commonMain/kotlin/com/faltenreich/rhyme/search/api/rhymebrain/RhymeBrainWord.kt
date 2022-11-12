@@ -1,4 +1,4 @@
-package com.faltenreich.rhyme.search.rhymebrain
+package com.faltenreich.rhyme.search.api.rhymebrain
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
