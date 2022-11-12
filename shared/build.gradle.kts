@@ -25,7 +25,6 @@ kotlin {
     }
     
     sourceSets {
-        val ktorVersion = "2.1.3"
 
         val commonMain by getting {
             dependencies {
@@ -34,23 +33,23 @@ kotlin {
                 implementation(compose.material)
                 implementation(compose.runtime)
 
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-cio:$ktorVersion")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation(Dependencies.Kotlinx.coroutines)
+                implementation(Dependencies.Kotlinx.serialization)
+                implementation(Dependencies.Ktor.core)
+                implementation(Dependencies.Ktor.cio)
+                implementation(Dependencies.Ktor.contentNegotiation)
+                implementation(Dependencies.Ktor.serialization)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("io.ktor:ktor-client-mock:$ktorVersion")
+                implementation(Dependencies.Ktor.mock)
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation(Dependencies.Ktor.okHttp)
             }
         }
         val androidTest by getting
@@ -63,7 +62,7 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+                implementation(Dependencies.Ktor.darwin)
             }
         }
         val iosX64Test by getting
@@ -94,7 +93,7 @@ android {
 }
 
 dependencies {
-    commonMainApi("dev.icerock.moko:resources:0.20.1")
+    commonMainApi(Dependencies.Moko.resources)
 }
 
 multiplatformResources {

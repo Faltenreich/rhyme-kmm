@@ -28,6 +28,6 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.activity:activity-compose:1.6.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation(Dependencies.Androidx.activityCompose)
+    implementation(Dependencies.Kotlinx.coroutinesAndroid)
 }
