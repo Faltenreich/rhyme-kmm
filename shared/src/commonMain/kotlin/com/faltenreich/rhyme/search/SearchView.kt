@@ -15,12 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import com.faltenreich.rhyme.MR
-import com.faltenreich.rhyme.di.ViewModelFactory
+import com.faltenreich.rhyme.di.inject
 import com.faltenreich.rhyme.getString
 import com.faltenreich.rhyme.word.WordView
 
 @Composable
-fun SearchView(viewModel: SearchViewModel = ViewModelFactory.create()) {
+fun SearchView(viewModel: SearchViewModel = inject()) {
     val state = viewModel.uiState.collectAsState(SearchViewState())
     Column {
         TextField(state.value.query,
