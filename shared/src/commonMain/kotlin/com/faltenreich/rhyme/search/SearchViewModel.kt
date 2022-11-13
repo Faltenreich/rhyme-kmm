@@ -28,12 +28,16 @@ object SearchViewModel {
                 .collect { query ->
                     val result = repository.search(query, Language.GERMAN)
                     println("Found ${result.size} words for query: $query")
-                    words.value = result
+                    words.value = result.sortedByDescending(Word::score)
                 }
         }
     }
 
     fun search(query: String) {
         this.query.value = query
+    }
+
+    fun reset() {
+        this.query.value = ""
     }
 }
