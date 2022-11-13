@@ -1,21 +1,17 @@
 package com.faltenreich.rhyme.networking
 
 import io.ktor.client.*
-import io.ktor.client.engine.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.serialization.kotlinx.json.*
 
-class KtorClient(private val client: HttpClient = HttpClient() {
-    install(ContentNegotiation) {
-        json()
-    }
-}): NetworkingClient {
+class KtorClient(
+    private val client: HttpClient = HttpClient { install(ContentNegotiation) { json() } },
+): NetworkingClient {
 
     override suspend fun request(url: String): String {
         val response = client.request(url)
-        val json = response.bodyAsText()
-        return json
+        return response.bodyAsText()
     }
 }
