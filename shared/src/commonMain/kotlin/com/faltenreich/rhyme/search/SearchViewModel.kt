@@ -1,6 +1,6 @@
 package com.faltenreich.rhyme.search
 
-import com.faltenreich.rhyme.language.Language
+import com.faltenreich.rhyme.language.LanguageViewModel
 import com.faltenreich.rhyme.search.api.SearchApi
 import com.faltenreich.rhyme.word.Word
 import kotlinx.coroutines.FlowPreview
@@ -13,6 +13,7 @@ import kotlin.time.Duration.Companion.seconds
 @OptIn(FlowPreview::class)
 class SearchViewModel(
     private val api: SearchApi,
+    private val languageViewModel: LanguageViewModel,
 ): KoinComponent {
 
     val state = MutableStateFlow<SearchViewState>(Idle)
@@ -24,7 +25,9 @@ class SearchViewModel(
                 .filter { it is Loading  }
                 .collect { loading ->
                     val query = loading.query
-                    val result = api.search(query, Language.GERMAN).sortedByDescending(Word::score)
+                    // TODO: Collect accordingly, so changing the language immediately affects the search
+                    val language = languageViewModel.state.value.currentLanguage
+                    val result = api.search(query, language).sortedByDescending(Word::score)
                     println("Found ${result.size} words for query: $query")
                     state.value = Result(query, result)
                 }
