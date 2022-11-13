@@ -1,6 +1,5 @@
 package com.faltenreich.rhyme.search
 
-import com.faltenreich.rhyme.language.Language
 import com.faltenreich.rhyme.search.api.SearchApi
 import com.faltenreich.rhyme.word.Word
 import kotlinx.coroutines.FlowPreview

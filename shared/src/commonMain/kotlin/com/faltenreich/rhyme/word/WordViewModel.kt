@@ -1,6 +1,6 @@
 package com.faltenreich.rhyme.word
 
-import com.faltenreich.rhyme.clipboard.Clipboard
+import com.faltenreich.rhyme.shared.clipboard.Clipboard
 
 class WordViewModel(
     private val word: Word,

@@ -10,7 +10,7 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.faltenreich.rhyme.MR
-import com.faltenreich.rhyme.getString
+import com.faltenreich.rhyme.shared.localization.getString
 
 @Composable
 fun SearchField(query: String, onValueChange: (String) -> Unit) {

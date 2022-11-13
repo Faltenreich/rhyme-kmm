@@ -16,8 +16,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.faltenreich.rhyme.MR
-import com.faltenreich.rhyme.di.inject
-import com.faltenreich.rhyme.getString
+import com.faltenreich.rhyme.shared.di.inject
+import com.faltenreich.rhyme.shared.localization.getString
 import com.faltenreich.rhyme.word.WordView
 
 @Composable

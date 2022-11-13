@@ -1,5 +1,6 @@
 package com.faltenreich.rhyme.serialization
 
+import com.faltenreich.rhyme.shared.serialization.KotlinxSerialization
 import kotlinx.serialization.Serializable
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -1,6 +1,6 @@
 package com.faltenreich.rhyme.search.api
 
-import com.faltenreich.rhyme.language.Language
+import com.faltenreich.rhyme.search.Language
 
 interface SearchHost {
 

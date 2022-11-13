@@ -1,5 +1,6 @@
 package com.faltenreich.rhyme.networking
 
+import com.faltenreich.rhyme.shared.networking.KtorClient
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.utils.io.*
