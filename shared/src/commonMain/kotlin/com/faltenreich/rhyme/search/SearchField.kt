@@ -12,7 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.faltenreich.rhyme.MR
-import com.faltenreich.rhyme.language.LanguageChooser
+import com.faltenreich.rhyme.language.LanguagePicker
 import com.faltenreich.rhyme.shared.localization.getString
 
 @Composable
@@ -38,7 +38,7 @@ fun SearchField(query: String, onValueChange: (String) -> Unit) {
                         contentDescription = getString(MR.strings.clear_input),
                         modifier = Modifier.clickable { expanded = true },
                     )
-                    LanguageChooser(expanded, onDismissRequest = { expanded = false }, onLanguageSelected = {})
+                    LanguagePicker(expanded, onDismissRequest = { expanded = false })
                 }
             }
         }
