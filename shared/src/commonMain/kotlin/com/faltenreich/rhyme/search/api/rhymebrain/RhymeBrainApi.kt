@@ -1,6 +1,6 @@
 package com.faltenreich.rhyme.search.api.rhymebrain
 
-import com.faltenreich.rhyme.search.Language
+import com.faltenreich.rhyme.language.Language
 import com.faltenreich.rhyme.shared.networking.KtorClient
 import com.faltenreich.rhyme.shared.networking.NetworkingClient
 import com.faltenreich.rhyme.search.api.SearchApi

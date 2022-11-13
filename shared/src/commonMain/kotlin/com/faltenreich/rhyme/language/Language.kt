@@ -1,4 +1,4 @@
-package com.faltenreich.rhyme.search
+package com.faltenreich.rhyme.language
 
 enum class Language(
     val code: String,

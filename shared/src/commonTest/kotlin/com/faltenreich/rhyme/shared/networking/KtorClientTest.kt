@@ -1,6 +1,5 @@
-package com.faltenreich.rhyme.networking
+package com.faltenreich.rhyme.shared.networking
 
-import com.faltenreich.rhyme.shared.networking.KtorClient
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.utils.io.*
@@ -11,8 +10,8 @@ import kotlin.test.assertEquals
 class KtorClientTest {
 
     @Test
-    fun `sends requests`() = runBlocking {
-        val json = """{"ip":"127.0.0.1"}"""
+    fun `responds with expected json`() = runBlocking {
+        val json = """{"key":"value"}"""
         val mockEngine = MockEngine {
             respond(content = ByteReadChannel(json))
         }
