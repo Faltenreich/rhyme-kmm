@@ -3,39 +3,36 @@ package com.faltenreich.rhyme.search
 import com.faltenreich.rhyme.language.Language
 import com.faltenreich.rhyme.search.api.SearchApi
 import com.faltenreich.rhyme.word.Word
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import kotlin.time.Duration.Companion.seconds
 
+@OptIn(FlowPreview::class)
 class SearchViewModel(
     private val api: SearchApi,
 ): KoinComponent {
 
-    private val query = MutableStateFlow("")
-    private val words = MutableStateFlow(emptyList<Word>())
-    val uiState = query.combine(words, ::SearchViewState)
+    val state = MutableStateFlow<SearchViewState>(Idle)
 
     init {
         GlobalScope.launch {
-            query.debounce(INPUT_SEARCH_DELAY)
-                .collect { query ->
-                    val result = api.search(query, Language.GERMAN)
+            state
+                .debounce(INPUT_SEARCH_DELAY)
+                .filter { it is Loading  }
+                .collect { loading ->
+                    val query = loading.query
+                    val result = api.search(query, Language.GERMAN).sortedByDescending(Word::score)
                     println("Found ${result.size} words for query: $query")
-                    words.value = result.sortedByDescending(Word::score)
+                    state.value = Result(query, result)
                 }
         }
     }
 
-    fun search(query: String) {
-        this.query.value = query
-    }
-
-    fun reset() {
-        this.query.value = ""
+    fun onQueryChanged(query: String) {
+        state.value = if (query.isBlank()) Idle else Loading(query)
     }
 
     companion object {

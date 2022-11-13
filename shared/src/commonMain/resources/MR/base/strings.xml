@@ -3,5 +3,6 @@
 <resources>
     <string name="app_name">Rhyme</string>
     <string name="search_placeholder">Search for rhymes&#8230;</string>
+    <string name="search_hint">Enter text to search for rhymes</string>
     <string name="clear_input">Clear input</string>
 </resources>
