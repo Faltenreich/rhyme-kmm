@@ -1,8 +1,13 @@
 package com.faltenreich.rhyme.word
 
-class WordViewModel(private val word: Word) {
+import com.faltenreich.rhyme.clipboard.Clipboard
+
+class WordViewModel(
+    private val word: Word,
+    private val clipboard: Clipboard = Clipboard(),
+) {
 
     fun onClick() {
-        println("Clicked word: $word")
+        clipboard.copyToClipboard(word.name)
     }
 }

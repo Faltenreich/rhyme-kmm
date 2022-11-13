@@ -31,6 +31,8 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                // FIXME: Does currently not work for iosArm64
+                // implementation(compose.preview)
                 implementation(compose.runtime)
 
                 implementation(Dependencies.Kotlinx.coroutines)
