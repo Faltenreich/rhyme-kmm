@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.compose")
     kotlin("plugin.serialization")
     id("dev.icerock.mobile.multiplatform-resources")
+    id("com.google.devtools.ksp")
 }
 
 kotlin {
@@ -35,6 +36,8 @@ kotlin {
                 // implementation(compose.preview)
                 implementation(compose.runtime)
 
+                implementation(Dependencies.Koin.core)
+                implementation(Dependencies.Koin.annotations)
                 implementation(Dependencies.Kotlinx.coroutines)
                 implementation(Dependencies.Kotlinx.serialization)
                 implementation(Dependencies.Ktor.core)
@@ -45,15 +48,21 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(Dependencies.Koin.test)
                 implementation(Dependencies.Ktor.mock)
             }
         }
         val androidMain by getting {
             dependencies {
+                implementation(Dependencies.Koin.android)
                 implementation(Dependencies.Ktor.android)
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(Dependencies.Koin.testJunit4)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -95,6 +104,10 @@ android {
 
 dependencies {
     commonMainApi(Dependencies.Moko.resources)
+    add("kspCommonMainMetadata", Dependencies.Koin.kspCompiler)
+    add("kspAndroid", Dependencies.Koin.kspCompiler)
+    add("kspIosX64", Dependencies.Koin.kspCompiler)
+    add("kspIosSimulatorArm64", Dependencies.Koin.kspCompiler)
 }
 
 multiplatformResources {

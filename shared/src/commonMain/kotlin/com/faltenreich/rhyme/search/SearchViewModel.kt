@@ -1,22 +1,19 @@
 package com.faltenreich.rhyme.search
 
 import com.faltenreich.rhyme.language.Language
-import com.faltenreich.rhyme.search.api.rhymebrain.RhymeBrainApi
+import com.faltenreich.rhyme.search.api.SearchApi
 import com.faltenreich.rhyme.word.Word
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
 import kotlin.time.Duration.Companion.seconds
 
-// Workaround: Singleton fixes redundant initialization
-// TODO: Convert to non-singleton via dependency injection
-object SearchViewModel {
-
-    private val INPUT_SEARCH_DELAY = 1.seconds
-
-    private val repository = SearchRepository(RhymeBrainApi())
+class SearchViewModel(
+    private val api: SearchApi,
+): KoinComponent {
 
     private val query = MutableStateFlow("")
     private val words = MutableStateFlow(emptyList<Word>())
@@ -26,7 +23,7 @@ object SearchViewModel {
         GlobalScope.launch {
             query.debounce(INPUT_SEARCH_DELAY)
                 .collect { query ->
-                    val result = repository.search(query, Language.GERMAN)
+                    val result = api.search(query, Language.GERMAN)
                     println("Found ${result.size} words for query: $query")
                     words.value = result.sortedByDescending(Word::score)
                 }
@@ -39,5 +36,10 @@ object SearchViewModel {
 
     fun reset() {
         this.query.value = ""
+    }
+
+    companion object {
+
+        private val INPUT_SEARCH_DELAY = 1.seconds
     }
 }

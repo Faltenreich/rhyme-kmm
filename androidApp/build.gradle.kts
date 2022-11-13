@@ -29,4 +29,6 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation(Dependencies.Androidx.activityCompose)
+    implementation(Dependencies.Koin.core)
+    implementation(Dependencies.Koin.android)
 }

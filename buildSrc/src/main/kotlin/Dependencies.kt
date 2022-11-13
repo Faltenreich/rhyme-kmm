@@ -4,7 +4,10 @@ object Versions {
     const val androidGradle = "7.3.1"
     const val compose = "1.2.1"
     const val coroutines = "1.6.4"
+    const val koin = "3.2.2"
+    const val koinAnnotations = "1.0.3"
     const val kotlin = "1.7.20"
+    const val ksp = "1.7.20-1.0.8"
     const val ktor = "2.1.3"
     const val moko = "0.20.1"
     const val serialization = "1.4.1"
@@ -15,6 +18,19 @@ object Dependencies {
     object Androidx {
 
         const val activityCompose = "androidx.activity:activity-compose:${Versions.androidCompose}"
+    }
+
+
+    object Koin {
+
+        const val annotations = "io.insert-koin:koin-annotations:${Versions.koinAnnotations}"
+        const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+        const val core = "io.insert-koin:koin-core:${Versions.koin}"
+        const val kspCompiler = "io.insert-koin:koin-ksp-compiler:${Versions.koinAnnotations}"
+        const val ktor = "io.insert-koin:koin-ktor:${Versions.koin}"
+        const val test = "io.insert-koin:koin-test:${Versions.koin}"
+        const val testJunit4 = "io.insert-koin:koin-test-junit4:${Versions.koin}"
+        const val android = "io.insert-koin:koin-android:${Versions.koin}"
     }
 
     object Kotlinx {

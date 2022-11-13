@@ -5,6 +5,7 @@ plugins {
     id("com.android.application") version Versions.androidGradle apply false
     id("com.android.library") version Versions.androidGradle apply false
     id("org.jetbrains.compose") version Versions.compose apply false
+    id("com.google.devtools.ksp") version Versions.ksp apply false
 }
 
 buildscript {
