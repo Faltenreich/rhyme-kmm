@@ -7,16 +7,15 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.serialization.kotlinx.json.*
 
-class KtorClient(engine: HttpClientEngine): NetworkingClient {
-
-    private val client = HttpClient(engine) {
-        install(ContentNegotiation) {
-            json()
-        }
+class KtorClient(private val client: HttpClient = HttpClient() {
+    install(ContentNegotiation) {
+        json()
     }
+}): NetworkingClient {
 
     override suspend fun request(url: String): String {
-        val response = client.get(url)
-        return response.bodyAsText()
+        val response = client.request(url)
+        val json = response.bodyAsText()
+        return json
     }
 }

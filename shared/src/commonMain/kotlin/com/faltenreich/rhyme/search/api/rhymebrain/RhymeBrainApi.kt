@@ -7,17 +7,18 @@ import com.faltenreich.rhyme.search.api.SearchApi
 import com.faltenreich.rhyme.search.api.WordMapper
 import com.faltenreich.rhyme.serialization.JsonSerialization
 import com.faltenreich.rhyme.word.Word
-import io.ktor.client.engine.cio.*
+import io.ktor.http.*
 
 class RhymeBrainApi(
-    private val networkingClient: NetworkingClient = KtorClient(CIO.create()),
+    private val networkingClient: NetworkingClient = KtorClient(),
     private val serialization: JsonSerialization = JsonSerialization(),
     private val mapper: WordMapper<RhymeBrainWord> = RhymeBrainWordMapper(),
 ): SearchApi {
 
-    override suspend fun search(query: String?, language: Language): List<Word> {
-        // FIXME: Results seem off and ignoring language
-        val url = "$HOST/talk?function=getRhymes&lang=${language.code}&word=$query"
+    override suspend fun search(query: String, language: Language): List<Word> {
+        val lang = language.code.encodeURLParameter()
+        val word = query.encodeURLParameter()
+        val url = "$HOST/talk?function=getRhymes&lang=$lang&word=$word"
         val json = networkingClient.request(url)
         val dtoList = serialization.decode<List<RhymeBrainWord>>(json)
         return dtoList.map(mapper::map)

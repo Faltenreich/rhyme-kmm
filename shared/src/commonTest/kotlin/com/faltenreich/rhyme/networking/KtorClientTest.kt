@@ -1,5 +1,6 @@
 package com.faltenreich.rhyme.networking
 
+import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.runBlocking
@@ -14,7 +15,8 @@ class KtorClientTest {
         val mockEngine = MockEngine {
             respond(content = ByteReadChannel(json))
         }
-        val client = KtorClient(mockEngine)
+        val httpClient = HttpClient(mockEngine)
+        val client = KtorClient(httpClient)
         assertEquals(json, client.request(""))
     }
 }

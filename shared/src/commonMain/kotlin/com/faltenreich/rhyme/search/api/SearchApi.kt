@@ -5,5 +5,5 @@ import com.faltenreich.rhyme.word.Word
 
 interface SearchApi {
 
-    suspend fun search(query: String?, language: Language): List<Word>
+    suspend fun search(query: String, language: Language): List<Word>
 }

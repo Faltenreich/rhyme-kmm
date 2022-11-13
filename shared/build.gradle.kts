@@ -36,7 +36,6 @@ kotlin {
                 implementation(Dependencies.Kotlinx.coroutines)
                 implementation(Dependencies.Kotlinx.serialization)
                 implementation(Dependencies.Ktor.core)
-                implementation(Dependencies.Ktor.cio)
                 implementation(Dependencies.Ktor.contentNegotiation)
                 implementation(Dependencies.Ktor.serialization)
             }
@@ -49,7 +48,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(Dependencies.Ktor.okHttp)
+                implementation(Dependencies.Ktor.android)
             }
         }
         val androidTest by getting
@@ -62,7 +61,7 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation(Dependencies.Ktor.darwin)
+                implementation(Dependencies.Ktor.ios)
             }
         }
         val iosX64Test by getting
