@@ -19,7 +19,7 @@ fun LanguagePicker(
 ) {
     val state = viewModel.state.collectAsState().value
     DropDownMenu(expanded, onDismissRequest) {
-        Language.values().forEach { language ->
+        state.languages.forEach { language ->
             val iSelected = state.currentLanguage == language
             val foregroundColor =
                 if (iSelected) MaterialTheme.colorScheme.onPrimary
