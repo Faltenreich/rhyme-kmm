@@ -1,9 +1,9 @@
 package com.faltenreich.rhyme.language
 
-import com.faltenreich.rhyme.shared.localization.getLanguageCode
+import com.faltenreich.rhyme.shared.localization.Localization
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class LanguageViewModel {
+class LanguageViewModel(private val localization: Localization) {
 
     val state = MutableStateFlow(LanguageViewState(
         languages = Language.values().toList(),
@@ -11,7 +11,7 @@ class LanguageViewModel {
     ))
 
     private fun getSystemLanguage(): Language {
-        return Language.fromLanguageCode(getLanguageCode()) ?: Language.ENGLISH
+        return Language.fromLanguageCode(localization.getLanguageCode()) ?: Language.ENGLISH
     }
 
     fun setCurrentLanguage(language: Language) {
