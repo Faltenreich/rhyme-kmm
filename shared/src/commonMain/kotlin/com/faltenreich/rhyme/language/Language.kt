@@ -15,6 +15,8 @@ enum class Language(
 
     companion object {
 
+        val default: Language = ENGLISH
+
         fun fromLanguageCode(languageCode: String): Language? {
             return values().firstOrNull { language -> language.code == languageCode }
         }

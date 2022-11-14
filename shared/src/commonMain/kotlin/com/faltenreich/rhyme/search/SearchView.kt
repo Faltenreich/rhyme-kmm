@@ -21,8 +21,10 @@ import com.faltenreich.rhyme.shared.localization.Localization
 import com.faltenreich.rhyme.word.WordView
 
 @Composable
-fun SearchView(viewModel: SearchViewModel = inject()) {
-    val localization = inject<Localization>()
+fun SearchView(
+    viewModel: SearchViewModel = inject(),
+    localization: Localization = inject(),
+) {
     val state = viewModel.state.collectAsState(Idle).value
     Column {
         SearchField(state.query, viewModel::onQueryChanged)

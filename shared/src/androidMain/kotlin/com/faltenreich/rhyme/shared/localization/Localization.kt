@@ -4,10 +4,8 @@ import androidx.compose.ui.text.intl.Locale
 import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
 
-actual class Localization actual constructor(private val context: android.content.Context) {
+actual class Localization actual constructor(private val context: Context) {
 
     actual fun getLanguageCode(): String {
         return Locale.current.language

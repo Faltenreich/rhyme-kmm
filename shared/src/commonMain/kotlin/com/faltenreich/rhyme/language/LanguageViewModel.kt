@@ -11,7 +11,7 @@ class LanguageViewModel(private val localization: Localization) {
     ))
 
     private fun getSystemLanguage(): Language {
-        return Language.fromLanguageCode(localization.getLanguageCode()) ?: Language.ENGLISH
+        return Language.fromLanguageCode(localization.getLanguageCode()) ?: Language.default
     }
 
     fun setCurrentLanguage(language: Language) {
