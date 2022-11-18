@@ -20,7 +20,6 @@ object Dependencies {
         const val activityCompose = "androidx.activity:activity-compose:${Versions.androidCompose}"
     }
 
-
     object Koin {
 
         const val annotations = "io.insert-koin:koin-annotations:${Versions.koinAnnotations}"

@@ -34,9 +34,10 @@ kotlin {
                 @Suppress("OPT_IN_IS_NOT_ENABLED")
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.material3)
-                // FIXME: Does currently not work for iosArm64
-                // implementation(compose.preview)
                 implementation(compose.runtime)
+                // FIXME: Not supported on iOS yet
+                // implementation(compose.preview)
+                // implementation("org.jetbrains.compose.ui:ui-test-junit4:")
 
                 implementation(Dependencies.Koin.core)
                 implementation(Dependencies.Koin.annotations)

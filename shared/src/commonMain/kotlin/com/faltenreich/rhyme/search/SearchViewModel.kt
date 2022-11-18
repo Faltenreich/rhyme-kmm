@@ -16,26 +16,26 @@ class SearchViewModel(
     private val languageViewModel: LanguageViewModel,
 ): KoinComponent {
 
-    val state = MutableStateFlow<SearchViewState>(Idle)
+    val state = MutableStateFlow<SearchState>(SearchState.Idle)
 
     init {
         GlobalScope.launch {
             state
                 .debounce(INPUT_SEARCH_DELAY)
-                .filter { it is Loading  }
+                .filter { it is SearchState.Loading  }
                 .collect { loading ->
                     val query = loading.query
                     // TODO: Collect accordingly, so changing the language immediately affects the search
                     val language = languageViewModel.state.value.currentLanguage
                     val result = api.search(query, language).sortedByDescending(Word::score)
                     println("Found ${result.size} words for query: $query")
-                    state.value = Result(query, result)
+                    state.value = SearchState.Result(query, result)
                 }
         }
     }
 
     fun onQueryChanged(query: String) {
-        state.value = if (query.isBlank()) Idle else Loading(query)
+        state.value = if (query.isBlank()) SearchState.Idle else SearchState.Loading(query)
     }
 
     companion object {
