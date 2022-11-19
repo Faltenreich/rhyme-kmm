@@ -7,5 +7,6 @@ import org.koin.dsl.module
 
 fun searchModule() = module {
     single<SearchApi> { RhymeBrainApi() }
+    singleOf(::SearchRepository)
     singleOf(::SearchViewModel)
 }
