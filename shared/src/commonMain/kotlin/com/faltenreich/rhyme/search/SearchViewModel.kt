@@ -12,7 +12,8 @@ class SearchViewModel(
     private val searchUseCase: SearchUseCase,
 ): ViewModel() {
 
-    val state = MutableStateFlow<SearchState>(SearchState.Idle)
+    private val state = MutableStateFlow<SearchState>(SearchState.Idle)
+    val uiState = state.asStateFlow()
 
     init {
         state

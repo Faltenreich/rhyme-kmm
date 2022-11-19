@@ -25,7 +25,7 @@ fun SearchView(
     viewModel: SearchViewModel = inject(),
     localization: Localization = inject(),
 ) {
-    val state = viewModel.state.collectAsState(SearchState.Idle).value
+    val state = viewModel.uiState.collectAsState().value
     Column {
         SearchField(state.query, viewModel::onQueryChanged)
         Box(

@@ -17,10 +17,10 @@ fun LanguagePicker(
     onDismissRequest: () -> Unit,
     viewModel: LanguageViewModel = inject(),
 ) {
-    val state = viewModel.state.collectAsState().value
+    val state = viewModel.uiState.collectAsState().value
     DropDownMenu(expanded, onDismissRequest) {
         state.languages.forEach { language ->
-            val iSelected = state.currentLanguage == language
+            val iSelected = (state as? LanguageState.Loaded)?.currentLanguage == language
             val foregroundColor =
                 if (iSelected) MaterialTheme.colorScheme.onPrimary
                 else MaterialTheme.colorScheme.onBackground

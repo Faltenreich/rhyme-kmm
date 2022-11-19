@@ -1,20 +1,30 @@
 package com.faltenreich.rhyme.language
 
-import com.faltenreich.rhyme.shared.localization.Localization
+import com.faltenreich.rhyme.shared.architecture.ViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
-class LanguageViewModel(private val localization: Localization) {
+class LanguageViewModel(
+    private val dispatcher: CoroutineDispatcher,
+    private val repository: LanguageRepository,
+): ViewModel() {
 
-    val state = MutableStateFlow(LanguageViewState(
-        languages = Language.values().toList(),
-        currentLanguage = getSystemLanguage(),
-    ))
+    private val state = MutableStateFlow<LanguageState>(LanguageState.Loading)
+    val uiState = state.asStateFlow()
 
-    private fun getSystemLanguage(): Language {
-        return Language.fromLanguageCode(localization.getLanguageCode()) ?: Language.default
+    init {
+        repository.currentLanguage
+            .map { language -> state.value = LanguageState.Loaded(language) }
+            .launchIn(viewModelScope)
     }
 
     fun setCurrentLanguage(language: Language) {
-        state.value = state.value.copy(currentLanguage = language)
+        viewModelScope.launch(dispatcher) {
+            repository.setLanguage(language)
+        }
     }
 }
