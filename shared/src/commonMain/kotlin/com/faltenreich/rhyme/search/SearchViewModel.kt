@@ -2,7 +2,6 @@
 
 package com.faltenreich.rhyme.search
 
-import com.faltenreich.rhyme.language.LanguageViewModel
 import com.faltenreich.rhyme.shared.architecture.ViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -11,7 +10,6 @@ import kotlin.time.Duration.Companion.seconds
 
 class SearchViewModel(
     private val searchUseCase: SearchUseCase,
-    languageViewModel: LanguageViewModel,
 ): ViewModel() {
 
     val state = MutableStateFlow<SearchState>(SearchState.Idle)
@@ -21,11 +19,8 @@ class SearchViewModel(
             .filterIsInstance<SearchState.Loading>()
             .debounce(1.seconds)
             .distinctUntilChanged()
-            .combine(languageViewModel.state) { state, language ->
-                state.query to language.currentLanguage
-            }
-            .flatMapLatest { (query, language) -> searchUseCase(query, language) }
-            .onEach { words -> state.value = SearchState.Result(SearchState.Idle.query, words) }
+            .flatMapLatest { state -> searchUseCase(state.query) }
+            .onEach { words -> state.value = SearchState.Result(state.value.query, words) }
             .launchIn(viewModelScope)
     }
 
