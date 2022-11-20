@@ -52,6 +52,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(Dependencies.Koin.test)
+                implementation(Dependencies.Kotlinx.coroutinesTest)
                 implementation(Dependencies.Ktor.mock)
             }
         }

@@ -22,6 +22,7 @@ class SearchViewModel(
             .distinctUntilChanged()
             .flatMapLatest { state -> searchUseCase(state.query) }
             .onEach { words -> state.value = SearchState.Result(state.value.query, words) }
+            // FIXME: Module with the Main dispatcher had failed to initialize. For tests Dispatchers.setMain from kotlinx-coroutines-test module can be used
             .launchIn(viewModelScope)
     }
 
