@@ -1,5 +1,6 @@
-package com.faltenreich.rhyme.language
+package com.faltenreich.rhyme.language.source
 
+import com.faltenreich.rhyme.language.Language
 import com.faltenreich.rhyme.shared.localization.Localization
 
 class LanguageInMemoryDataSource(private val localization: Localization): LanguageDataSource {

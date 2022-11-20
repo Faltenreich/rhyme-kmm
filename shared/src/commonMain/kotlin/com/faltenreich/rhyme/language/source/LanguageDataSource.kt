@@ -1,4 +1,6 @@
-package com.faltenreich.rhyme.language
+package com.faltenreich.rhyme.language.source
+
+import com.faltenreich.rhyme.language.Language
 
 interface LanguageDataSource {
 
