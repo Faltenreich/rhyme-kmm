@@ -3,8 +3,6 @@ package com.faltenreich.rhyme.search
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
@@ -15,7 +13,7 @@ import androidx.compose.ui.Modifier
 import com.faltenreich.rhyme.MR
 import com.faltenreich.rhyme.shared.di.inject
 import com.faltenreich.rhyme.shared.localization.Localization
-import com.faltenreich.rhyme.word.WordView
+import com.faltenreich.rhyme.word.WordListView
 
 @Composable
 fun SearchView(
@@ -37,12 +35,7 @@ fun SearchView(
                 is SearchState.Idle -> Text(localization.getString(MR.strings.search_hint))
                 is SearchState.Loading -> CircularProgressIndicator()
                 is SearchState.Error -> Icon(Icons.Filled.Info, null)
-                is SearchState.Result -> LazyColumn {
-                    items(state.words) { word ->
-                        WordView(word)
-                        Divider()
-                    }
-                }
+                is SearchState.Result -> WordListView(state.words)
             }
         }
     }
