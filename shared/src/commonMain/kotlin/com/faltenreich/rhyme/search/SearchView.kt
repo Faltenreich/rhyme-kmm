@@ -7,10 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -27,7 +24,11 @@ fun SearchView(
 ) {
     val state = viewModel.uiState.collectAsState().value
     Column {
-        SearchField(state.query, viewModel::onQueryChanged)
+        SmallTopAppBar(
+            title = { Text("") },
+            colors = TopAppBarDefaults.smallTopAppBarColors(MaterialTheme.colorScheme.primary),
+            actions = { SearchField(state.query, viewModel::onQueryChanged) },
+        )
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
