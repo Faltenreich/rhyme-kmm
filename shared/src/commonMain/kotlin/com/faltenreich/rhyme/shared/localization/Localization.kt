@@ -2,7 +2,7 @@ package com.faltenreich.rhyme.shared.localization
 
 import dev.icerock.moko.resources.StringResource
 
-expect class Localization constructor(context: Context) {
+interface Localization {
 
     fun getLanguageCode(): String
 

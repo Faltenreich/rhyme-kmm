@@ -4,13 +4,15 @@ import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
 
-actual class Localization actual constructor(context: Context) {
+import platform.Foundation.NSLocale
 
-    actual fun getLanguageCode(): String {
+actual class SystemLocalization actual constructor(context: Context): Localization {
+
+    actual override fun getLanguageCode(): String {
         return NSLocale.currentLocale.languageCode
     }
 
-    actual fun getString(resource: StringResource): String {
+    actual override fun getString(resource: StringResource): String {
         return StringDesc.Resource(resource).localized()
     }
 }
