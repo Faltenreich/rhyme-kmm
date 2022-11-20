@@ -6,5 +6,4 @@ data class Word(
     val frequency: Int,
     val score: Int,
     val isOffensive: Boolean,
-    val isFavorite: Boolean = false,
 )
