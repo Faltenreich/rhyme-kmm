@@ -5,5 +5,5 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 actual fun localizationModule() = module {
-    single { SystemLocalization(androidContext()) } bind Localization::class
+    single { PlatformLocalization(androidContext()) } bind Localization::class
 }

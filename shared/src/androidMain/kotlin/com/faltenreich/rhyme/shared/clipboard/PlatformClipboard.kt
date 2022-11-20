@@ -5,7 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import com.faltenreich.rhyme.shared.di.inject
 
-actual class SystemClipboard: Clipboard {
+actual class PlatformClipboard: Clipboard {
 
     actual override fun copyToClipboard(string: String) {
         val context = inject<Context>()

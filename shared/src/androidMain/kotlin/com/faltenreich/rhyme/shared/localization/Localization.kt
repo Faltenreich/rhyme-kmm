@@ -5,7 +5,7 @@ import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
 
-actual class SystemLocalization actual constructor(private val context: Context): Localization {
+actual class PlatformLocalization actual constructor(private val context: Context): Localization {
 
     actual override fun getLanguageCode(): String {
         return Locale.current.language

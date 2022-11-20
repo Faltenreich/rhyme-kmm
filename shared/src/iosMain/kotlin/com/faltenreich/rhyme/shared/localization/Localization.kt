@@ -6,7 +6,7 @@ import dev.icerock.moko.resources.desc.StringDesc
 
 import platform.Foundation.NSLocale
 
-actual class SystemLocalization actual constructor(context: Context): Localization {
+actual class PlatformLocalization actual constructor(context: Context): Localization {
 
     actual override fun getLanguageCode(): String {
         return NSLocale.currentLocale.languageCode
