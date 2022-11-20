@@ -1,4 +1,4 @@
-package com.faltenreich.rhyme.search
+package com.faltenreich.rhyme.shared.view
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons

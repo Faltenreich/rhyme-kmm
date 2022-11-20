@@ -1,8 +1,8 @@
 package com.faltenreich.rhyme.shared.clipboard
 
-actual class Clipboard {
+actual class SystemClipboard: Clipboard {
 
-    actual fun copyToClipboard(string: String) {
+    actual override fun copyToClipboard(string: String) {
         UIPasteboard.general.string = string
     }
 }

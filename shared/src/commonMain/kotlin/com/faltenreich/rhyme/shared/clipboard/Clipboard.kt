@@ -1,6 +1,6 @@
 package com.faltenreich.rhyme.shared.clipboard
 
-expect class Clipboard constructor() {
+interface Clipboard {
 
     fun copyToClipboard(string: String)
 }

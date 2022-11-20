@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.faltenreich.rhyme.MR
 import com.faltenreich.rhyme.shared.di.inject
 import com.faltenreich.rhyme.shared.localization.Localization
+import com.faltenreich.rhyme.shared.view.ClearButton
 
 @Composable
 fun SearchField(

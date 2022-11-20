@@ -14,6 +14,8 @@ object MethodInjection: KoinComponent {
     /**
      * Resolve dependency that has been injected
      *
+     * @param qualifier Optional class qualified for the dependency resolution
+     * @param parameters Optional parameters of the resolved dependency
      * @return Resolved dependency
      */
     inline fun <reified T: Any> inject(
@@ -22,6 +24,9 @@ object MethodInjection: KoinComponent {
     ): T = get(qualifier, parameters)
 }
 
+/**
+ * Convenience method for [MethodInjection.inject]
+ */
 inline fun <reified T: Any> inject(
     qualifier: Qualifier? = null,
     noinline parameters: ParametersDefinition? = null,
