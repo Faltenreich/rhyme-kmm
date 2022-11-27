@@ -43,13 +43,14 @@ class SearchViewModelTest: KoinTest {
     }
 
     @Test
-    fun `reaches result state on non-blank query`() = runTest(inject()) {
+    fun `reaches result state on non-blank query`() = runTest {
         val viewModel = inject<SearchViewModel>()
         viewModel.uiState.test {
             viewModel.onQueryChanged("Query")
             assertTrue(awaitItem() is SearchState.Idle)
             assertTrue(awaitItem() is SearchState.Loading)
-            // FIXME: assertTrue(awaitItem() is SearchState.Result)
+            // FIXME: No value produced in 1s
+            assertTrue(awaitItem() is SearchState.Result)
         }
     }
 }
