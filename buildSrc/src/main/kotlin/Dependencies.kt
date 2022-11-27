@@ -11,6 +11,7 @@ object Versions {
     const val ktor = "2.1.3"
     const val moko = "0.20.1"
     const val serialization = "1.4.1"
+    const val turbine = "0.12.1"
 }
 
 object Dependencies {
@@ -53,5 +54,10 @@ object Dependencies {
 
         const val resourcesPlugin = "dev.icerock.moko:resources-generator:${Versions.moko}"
         const val resources = "dev.icerock.moko:resources:${Versions.moko}"
+    }
+
+    object Turbine {
+
+        const val core = "app.cash.turbine:turbine:${Versions.turbine}"
     }
 }

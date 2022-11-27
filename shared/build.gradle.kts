@@ -53,6 +53,7 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation(Dependencies.Koin.test)
                 implementation(Dependencies.Kotlinx.coroutinesTest)
+                implementation(Dependencies.Turbine.core)
                 implementation(Dependencies.Ktor.mock)
             }
         }

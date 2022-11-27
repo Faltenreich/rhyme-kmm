@@ -1,7 +1,12 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package com.faltenreich.rhyme.search
 
+import app.cash.turbine.test
 import com.faltenreich.rhyme.shared.di.inject
 import com.faltenreich.rhyme.testModule
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
@@ -28,16 +33,23 @@ class SearchViewModelTest: KoinTest {
     }
 
     @Test
-    fun `reaches idle state on blank query`() {
+    fun `reaches idle state on blank query`() = runTest {
         val viewModel = inject<SearchViewModel>()
-        viewModel.onQueryChanged("")
-        assertEquals(SearchState.Idle, viewModel.uiState.value)
+        viewModel.uiState.test {
+            viewModel.onQueryChanged("")
+            assertTrue(awaitItem() is SearchState.Idle)
+            // TODO: Verify last item
+        }
     }
 
     @Test
-    fun `reaches loading state on non-blank query`() {
+    fun `reaches result state on non-blank query`() = runTest(inject()) {
         val viewModel = inject<SearchViewModel>()
-        viewModel.onQueryChanged("Query")
-        assertTrue(viewModel.uiState.value is SearchState.Loading)
+        viewModel.uiState.test {
+            viewModel.onQueryChanged("Query")
+            assertTrue(awaitItem() is SearchState.Idle)
+            assertTrue(awaitItem() is SearchState.Loading)
+            // FIXME: assertTrue(awaitItem() is SearchState.Result)
+        }
     }
 }
