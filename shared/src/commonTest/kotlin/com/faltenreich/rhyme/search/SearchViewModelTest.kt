@@ -3,8 +3,8 @@
 package com.faltenreich.rhyme.search
 
 import app.cash.turbine.test
+import com.faltenreich.rhyme.mainModule
 import com.faltenreich.rhyme.shared.di.inject
-import com.faltenreich.rhyme.testModule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.koin.core.context.startKoin
@@ -17,7 +17,7 @@ class SearchViewModelTest: KoinTest {
     @BeforeTest
     fun setup() {
         startKoin {
-            modules(testModule())
+            modules(mainModule())
         }
     }
 
