@@ -21,6 +21,7 @@ fun SearchView(
     localization: Localization = inject(),
 ) {
     val state = viewModel.uiState.collectAsState().value
+
     Column {
         SmallTopAppBar(
             title = { Text("") },
