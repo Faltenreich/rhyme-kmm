@@ -6,7 +6,7 @@ Rhyme is a mobile app that finds rhymes for a given query.
 
 This is a proof of concept for a multiplatform app targeting Android and iOS with the help of Kotlin Multiplatform Mobile in combination with Compose Multiplatform.
 
-This project serves as sample for the following blogpost: [Migrating to Kotlin Multiplatform Mobile](https://writingbits.de/mobile/2023/01/18/migrating-to-kotlin-multiplatform-mobile.html)
+This project serves as sample for the following blogpost: [Migrating to Kotlin Multiplatform Mobile](https://writingbits.de/2023/01/18/migrating-to-kotlin-multiplatform-mobile.html)
 
 #### Third-party licenses
 
